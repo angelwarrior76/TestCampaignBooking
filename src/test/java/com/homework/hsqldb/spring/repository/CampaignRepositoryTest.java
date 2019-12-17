@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -17,10 +17,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(properties = {"application.properties"}, classes = {CampaignsRepository.class})
 public class CampaignRepositoryTest {
 
     @Autowired
@@ -29,14 +30,14 @@ public class CampaignRepositoryTest {
     @Test
     public void whenFindingCustomerById_thenCorrect() {
         campaigns.save(new Campaign(1, "Test campaign 1", new Date(), new Date(), Status.PLANNED));
-        //assertThat(campaigns.findById(1)).isInstanceOf(Optional.class);
+        assertSame(campaigns.findById(1), Optional.class);
     }
 
     @Test
     public void whenFindingAllCustomers_thenCorrect() {
         campaigns.save(new Campaign(2, "Test campaign 2", new Date(), new Date(), Status.PLANNED));
         campaigns.save(new Campaign(3, "Test campaign 3", new Date(), new Date(), Status.PLANNED));
-        //assertThat(campaigns.findAll()).isInstanceOf(List.class);
+        assertSame(campaigns.findAll(), List.class);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class CampaignRepositoryTest {
         campaigns.save(new Campaign(4, "Test campaign 4", new Date(), new Date(), Status.PLANNED));
         Campaign campaign = campaigns.findById(1).orElseGet(()
                 -> new Campaign(4, "Test campaign 4", new Date(), new Date(), Status.PLANNED));
-        //assertThat(campaign.getName()).isEqualTo("Test campaign 4");
+        assertEquals(campaign.getName(), "Test campaign 4");
     }
 
 }
