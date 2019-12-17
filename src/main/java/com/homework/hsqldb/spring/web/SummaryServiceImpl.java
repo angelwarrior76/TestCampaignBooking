@@ -24,6 +24,7 @@ public class SummaryServiceImpl implements SummaryService {
     @Override
     public Iterable<Campaign> listCampaigns(CampaignData data) {
         Pageable page = PageRequest.of(data.getPageNumber(),data.getPageSize(), data.getDirection(), "name", "count_ads", "status");
-        return repository.findCampains(data.getName(), data.getStatus().getCode(), page);
+        return repository.findCampainsByNameAndStatus(data.getName(), data.getStatus().getCode(), page);
     }
+
 }
