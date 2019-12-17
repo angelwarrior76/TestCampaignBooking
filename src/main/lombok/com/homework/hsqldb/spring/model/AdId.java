@@ -1,8 +1,13 @@
 package com.homework.hsqldb.spring.model;
 
-import lombok.*;
-
 import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -15,6 +20,6 @@ public class AdId implements Serializable {
     private static final long serialVersionUID = 4702260095379136658L;
 
     private int adId;
-    private int campaignId;
+    private Campaign campaign;
 
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
@@ -54,6 +55,7 @@ public class Ad implements Serializable {
     @Column(name = "asset_url")
     private String assetUrl;
 
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "platforms")
     private List<Platform> platforms;
 
