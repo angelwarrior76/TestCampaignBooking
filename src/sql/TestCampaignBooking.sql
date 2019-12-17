@@ -23,7 +23,7 @@ create table ads (
    ad_id                INT                 not null,
    campaign_id          INT                 not null,
    asset_url            VARCHAR(60)         not null,
-   platforms            VARCHAR(10)         not null,
+   platforms            INT ARRAY           not null,
    name                 VARCHAR(60)             null,
    status               INT                 not null,
    constraint PK_ADS primary key (ad_id, campaign_id)
