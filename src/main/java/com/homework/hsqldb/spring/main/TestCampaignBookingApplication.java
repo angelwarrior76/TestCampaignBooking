@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EnableJpaRepositories("com.homework.hsqldb.spring.repository")
 @EntityScan("com.homework.hsqldb.spring.model")
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class }, scanBasePackages = {"com.homework.hsqldb.spring"})
 public class TestCampaignBookingApplication {
 
     public static void main(String[] args) {
