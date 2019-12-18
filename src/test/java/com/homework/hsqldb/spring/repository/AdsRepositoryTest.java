@@ -11,19 +11,20 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.boot.SpringBootConfiguration;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.ContextConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(properties = {"application.properties"}, classes = {AdsRepository.class})
+@ContextConfiguration(locations = "/application-context.xml")
+@SpringBootConfiguration
+@SpringBootTest
 public class AdsRepositoryTest {
 
     @Autowired
