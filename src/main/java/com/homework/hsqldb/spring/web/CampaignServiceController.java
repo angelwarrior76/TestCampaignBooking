@@ -31,8 +31,8 @@ public class CampaignServiceController {
     private CampaignService service;
     private static final Logger log = LoggerFactory.getLogger(CampaignServiceController.class);
 
-    @GetMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<? extends Object> get(@PathVariable int id) {
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<? extends Object> get(@PathVariable("id") int id) {
         Object response;
         try {
             response = service.getCampaignById(id);
@@ -46,6 +46,7 @@ public class CampaignServiceController {
     public ResponseEntity<? extends Object> create(@RequestBody Campaign campaign) {
         Object response;
         try {
+            log.info(" campaign: " + campaign);
             response = service.createCampaign(campaign);
         } catch (Exception e) {
             response = new ErrorSimpleView(e);
@@ -53,8 +54,8 @@ public class CampaignServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<? extends Object> update(@PathVariable int id, @RequestBody Campaign campaign) {
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<? extends Object> update(@PathVariable("id") int id, @RequestBody Campaign campaign) {
         Object response;
         try {
             response = service.updateCampaign(id, campaign);
@@ -64,8 +65,8 @@ public class CampaignServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @DeleteMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable int id) {
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable("id") int id) {
         service.deleteCampaign(id);
     }
 
