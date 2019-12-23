@@ -2,6 +2,10 @@ package com.homework.hsqldb.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import com.homework.hsqldb.spring.utils.CampaignDeserializer;
+
 import java.io.Serializable;
 
 import java.util.List;
@@ -47,6 +51,7 @@ public class Ad implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campaign_id")
+    @JsonDeserialize(using = CampaignDeserializer.class)
     private Campaign campaign;
 
     @Column(name = "name")
@@ -61,5 +66,14 @@ public class Ad implements Serializable {
 
     @Column(name = "status")
     private Status status;
+
+    public Ad(Campaign campaign, String name, String url, List<Platform> platforms, Status status) {
+        this();
+        this.campaign = campaign;
+        this.name = name;
+        this.assetUrl = url;
+        this.platforms = platforms;
+        this.status = status;
+    }
 
 }
