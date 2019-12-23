@@ -1,5 +1,7 @@
 package com.homework.hsqldb.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -10,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -50,16 +50,17 @@ public class Campaign implements Serializable {
     @Column(name = "status")
     private Status status;
 
+    public Campaign(int id) {
+        this();
+        this.campaignId = id;
+    }
+
     public Campaign(String name, Date sdate, Date edate, Status status) {
+        this();
         this.name = name;
         this.startDate = sdate;
         this.finishDate = edate;
         this.status = status;
     }
-
-    /*public String toString() {
-
-        return
-    }*/
 
 }
