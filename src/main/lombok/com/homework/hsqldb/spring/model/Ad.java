@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,7 +52,7 @@ public class Ad implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campaign_id")
-    @JsonDeserialize(using = CampaignDeserializer.class)
+    @Convert(converter = CampaignConverter.class)
     private Campaign campaign;
 
     @Column(name = "name")
