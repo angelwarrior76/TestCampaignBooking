@@ -1,6 +1,7 @@
 package com.homework.hsqldb.spring.web;
 
 import com.homework.hsqldb.spring.model.Ad;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ public class AdServiceController {
     private AdService service;
     private static final Logger log = LoggerFactory.getLogger(AdServiceController.class);
 
-    @GetMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<? extends Object> get(@PathVariable int id) {
         Object response;
         try {
@@ -52,7 +53,7 @@ public class AdServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<? extends Object> update(@PathVariable int id, @RequestBody Ad ad) {
         Object response;
         try {
@@ -63,7 +64,7 @@ public class AdServiceController {
         return ResponseEntity.ok().body(response);
     }
 
-    @DeleteMapping(value = "/:{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void delete(@PathVariable int id) {
         service.deleteAd(id);
     }

@@ -46,7 +46,6 @@ public class CampaignServiceController {
     public ResponseEntity<? extends Object> create(@RequestBody Campaign campaign) {
         Object response;
         try {
-            log.info(" campaign: " + campaign);
             response = service.createCampaign(campaign);
         } catch (Exception e) {
             response = new ErrorSimpleView(e);
